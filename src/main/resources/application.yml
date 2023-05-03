@@ -10,44 +10,6 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   cloud:
-#    nacos:
-#      config:
-##        server-addr: 172.17.90.244:8848,172.17.91.23:8848,172.17.90.55:8848 # 配置中心真实ip
-#        server-addr: 172.17.90.244:8848
-#        file-extension: yaml
-#        namespace: middle-${SPRING_PROFILES_ACTIVE:dev}
-#        group: sentinel-dev
-#        refresh-enabled: true
-#      discovery:
-##        server-addr: 172.17.90.244:8848,172.17.91.23:8848,172.17.90.55:8848 #服务注册和发现中心，和配置中心使用同一个变量
-#        server-addr: 172.17.90.244:8848
-#        namespace: middle-${SPRING_PROFILES_ACTIVE:dev}
-#        group: sentinel-dev
-    sentinel:
-      eager: true #启动立即加载初始化, 而不是有流量之后再和控制台交互
-      transport:
-        port: 8719
-        dashboard: 172.17.90.244:8091
-        heartbeat-interval-ms: 15000
-      # 路由的配置可以做持久化到数据库
-      datasource:
-        ds:
-          nacos: # 整合nacos,把流控规则保存到nacos, sentinel控制台启动时候就能够读取这个配置
-#            server-addr: 172.17.90.244:8848,172.17.91.23:8848,172.17.90.55:8848
-            server-addr: 172.17.90.244:8848
-            dataId: gateway-sentinel-flow # 为什么会这样设置，后面会讲到
-            namespace: public
-            groupId: sentinel-dev
-            rule-type: gw_flow # 流控配置
-            data-type: json
-        ds2:
-          nacos:
-            server-addr: 172.17.90.244:8848
-            dataId: gateway-sentinel-degrade
-            namespace: public
-            groupId: sentinel-dev
-            rule-type: DEGRADE # 流控配置
-            data-type: json
     gateway:
       routes:
         - id: treat
@@ -63,11 +25,35 @@ spring:
             - Path=/Biosan/Acme/**
           filters:
             - RewritePath=/Biosan/(?<segment>.*),/$\{segment}
-#            - BlackListUrlFilter=/product/black
+    sentinel:
+      eager: true #启动立即加载初始化, 而不是有流量之后再和控制台交互
+      transport:
+        port: 8719
+        dashboard: 172.17.90.244:8091
+        heartbeat-interval-ms: 15000
+      # 路由的配置可以做持久化到数据库
+      datasource:
+        ds:
+          nacos: # 整合nacos,把流控规则保存到nacos, sentinel控制台启动时候就能够读取这个配置
+            #            server-addr: 172.17.90.244:8848,172.17.91.23:8848,172.17.90.55:8848
+            server-addr: 172.17.90.244:8848
+            dataId: gateway-sentinel-flow # 为什么会这样设置，后面会讲到
+            namespace: public
+            groupId: sentinel-dev
+            rule-type: gw_flow # 流控配置
+            data-type: json
+        ds2:
+          nacos:
+            server-addr: 172.17.90.244:8848
+            dataId: gateway-sentinel-degrade
+            namespace: public
+            groupId: sentinel-dev
+            rule-type: DEGRADE # 流控配置
+            data-type: json
 security:
   enable: false
 rsa:
-  public-key: /Users/eassen/java-project/github-demos/fun-gateway/src/main/resources/rsa.pub
+  public-key: classpath:/rsa.pub
 
 logging:
   level:

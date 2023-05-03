@@ -5,17 +5,11 @@ import com.alibaba.csp.sentinel.adapter.gateway.common.api.ApiDefinition;
 import com.alibaba.csp.sentinel.adapter.gateway.common.api.ApiPathPredicateItem;
 import com.alibaba.csp.sentinel.adapter.gateway.common.api.ApiPredicateItem;
 import com.alibaba.csp.sentinel.adapter.gateway.common.api.GatewayApiDefinitionManager;
-import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule;
-import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayParamFlowItem;
-import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayRuleManager;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.SentinelGatewayFilter;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.callback.BlockRequestHandler;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.callback.GatewayCallbackManager;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.exception.SentinelGatewayBlockExceptionHandler;
-import com.alibaba.csp.sentinel.slots.block.BlockException;
-import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.degrade.DegradeException;
-import com.alibaba.csp.sentinel.slots.block.flow.FlowException;
 import com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowException;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -29,8 +23,6 @@ import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.web.reactive.result.view.ViewResolver;
-import org.springframework.web.server.ServerWebExchange;
-import reactor.core.publisher.Mono;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
@@ -68,7 +60,6 @@ public class GatewaySentinelConfig {
     public void doInit() {
         // sentinel 规则
         initCustomizedApis();
-        // initGatewayRules();
     }
 
     private void initCustomizedApis() {
@@ -118,60 +109,4 @@ public class GatewaySentinelConfig {
         };
         GatewayCallbackManager.setBlockHandler(blockRequestHandler);
     }
-
-    // 网关自己的限流，暂时用不上
-//    private void initGatewayRules() {
-//        Set<GatewayFlowRule> rules = new HashSet<>();
-//        rules.add(new GatewayFlowRule("acme-global")
-//                .setCount(10)
-//                .setIntervalSec(1)
-//        );
-//        rules.add(new GatewayFlowRule("treat-global")
-//                .setCount(2)
-//                .setIntervalSec(2)
-//                .setBurst(2)
-//                .setParamItem(new GatewayParamFlowItem()
-//                        .setParseStrategy(SentinelGatewayConstants.PARAM_PARSE_STRATEGY_CLIENT_IP)
-//                )
-//        );
-//        rules.add(new GatewayFlowRule("httpbin_route")
-//                .setCount(10)
-//                .setIntervalSec(1)
-//                .setControlBehavior(RuleConstant.CONTROL_BEHAVIOR_RATE_LIMITER)
-//                .setMaxQueueingTimeoutMs(600)
-//                .setParamItem(new GatewayParamFlowItem()
-//                        .setParseStrategy(SentinelGatewayConstants.PARAM_PARSE_STRATEGY_HEADER)
-//                        .setFieldName("X-Sentinel-Flag")
-//                )
-//        );
-//        rules.add(new GatewayFlowRule("acme")
-//                .setCount(1)
-//                .setIntervalSec(1)
-//                .setParamItem(new GatewayParamFlowItem()
-//                        .setParseStrategy(SentinelGatewayConstants.PARAM_PARSE_STRATEGY_URL_PARAM)
-//                        .setFieldName("pa")
-//                )
-//        );
-//        rules.add(new GatewayFlowRule("httpbin_route")
-//                .setCount(2)
-//                .setIntervalSec(30)
-//                .setParamItem(new GatewayParamFlowItem()
-//                        .setParseStrategy(SentinelGatewayConstants.PARAM_PARSE_STRATEGY_URL_PARAM)
-//                        .setFieldName("type")
-//                        .setPattern("warn")
-//                        .setMatchStrategy(SentinelGatewayConstants.PARAM_MATCH_STRATEGY_CONTAINS)
-//                )
-//        );
-//
-//        rules.add(new GatewayFlowRule("some_customized_api")
-//                .setResourceMode(SentinelGatewayConstants.RESOURCE_MODE_CUSTOM_API_NAME)
-//                .setCount(5)
-//                .setIntervalSec(1)
-//                .setParamItem(new GatewayParamFlowItem()
-//                        .setParseStrategy(SentinelGatewayConstants.PARAM_PARSE_STRATEGY_URL_PARAM)
-//                        .setFieldName("pn")
-//                )
-//        );
-//        GatewayRuleManager.loadRules(rules);
-//    }
 }
