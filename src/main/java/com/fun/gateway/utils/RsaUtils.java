@@ -10,7 +10,7 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 /**
- * @author mrdjun
+ * @author EassenHou
  */
 public class RsaUtils {
     private static final int DEFAULT_KEY_SIZE = 2048;
@@ -102,8 +102,8 @@ public class RsaUtils {
     }
 
     public static void main(String[] args) throws Exception {
-        String privatePath = "F:\\var\\rsa\\rsa";
-        String publicPath = "F:\\var\\rsa\\rsa.pub";
+        String privatePath = "/Users/eassen/java-project/github-demos/fun-gateway/src/main/resources/rsa";
+        String publicPath = "/Users/eassen/java-project/github-demos/fun-gateway/src/main/resources/rsa.pub";
         generateKey(publicPath,privatePath,"fun-security",2048);
     }
 }

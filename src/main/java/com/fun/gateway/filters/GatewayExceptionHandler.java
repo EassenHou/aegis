@@ -1,6 +1,5 @@
-package com.fun.gateway.config;
+package com.fun.gateway.filters;
 
-import com.alibaba.csp.sentinel.slots.block.flow.FlowException;
 import com.alibaba.fastjson.JSON;
 import com.fun.gateway.domain.R;
 import org.slf4j.Logger;
@@ -19,7 +18,7 @@ import reactor.core.publisher.Mono;
 
 /**
  * 网关异常处理
- * @author MrDJun 2020/10/27
+ * @author EassenHou
  */
 @Order(-1)
 @Configuration

@@ -5,7 +5,7 @@ import com.fun.gateway.utils.StringUtils;
 /**
  * 字符串格式化
  *
- * @author DJun
+ * @author EassenHou
  */
 public class StrFormatter {
     public static final String EMPTY_JSON = "{}";

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 响应信息主体
  *
- * @author ruoyi
+ * @author EassenHou
  */
 public class R<T> implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="nacos_config" uuid="e8064b6c-25d2-4011-b05c-da338f801f8d">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://172.17.90.226:3306/nacos_config?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=UTF8&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>

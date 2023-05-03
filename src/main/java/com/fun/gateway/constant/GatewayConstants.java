@@ -2,7 +2,7 @@ package com.fun.gateway.constant;
 
 /**
  * 常量
- * @author MrDJun 2020/11/24
+ * @author EassenHou
  */
 public class GatewayConstants {
     public static final String TOKEN_PREFIX = "Bearer ";

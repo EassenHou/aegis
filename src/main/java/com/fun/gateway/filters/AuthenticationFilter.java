@@ -1,4 +1,4 @@
-package com.fun.gateway.config;
+package com.fun.gateway.filters;
 
 import com.alibaba.fastjson.JSON;
 import com.fun.gateway.constant.GatewayConstants;
@@ -28,7 +28,7 @@ import java.security.PublicKey;
  *  此网关的 JwtUtils 搭配着 fun-security 中的 auth 使用，其主要作为统一授权中心使用，
  *  由 auth 颁发令牌，网关只做鉴权不做授权
  *
- * @author MrDJun 2020/10/26
+ * @author EassenHou
  */
 @Component
 public class AuthenticationFilter implements GlobalFilter, Ordered {
@@ -51,6 +51,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
         }
     }
 
+    @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String token = getToken(exchange.getRequest());
         // 是否开启验证

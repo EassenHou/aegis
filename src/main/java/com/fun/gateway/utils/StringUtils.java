@@ -10,9 +10,9 @@ import java.util.Map;
 /**
  * 字符串工具类
  *
- * @author DJun
+ * @author EassenHou
  */
-public class StringUtils extends org.apache.commons.lang3.StringUtils {
+public class StringUtils extends org.springframework.util.StringUtils {
     /**
      * 空字符串
      */

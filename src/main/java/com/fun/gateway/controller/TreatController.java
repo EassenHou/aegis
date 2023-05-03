@@ -5,12 +5,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 测试路由和网关流控 Controller
- *
- * @author EassenHou
  */
 @RestController
-@RequestMapping("/product")
-public class ProductController {
+@RequestMapping("/Treat")
+public class TreatController {
 
     @RequestMapping("/list")
     public String list() {
@@ -23,7 +21,6 @@ public class ProductController {
         return "hello,sentinel";
 
     }
-
     @RequestMapping("/black")
     public String black() {
         return "hello,black";

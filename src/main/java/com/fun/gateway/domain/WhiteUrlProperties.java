@@ -8,7 +8,7 @@ import java.util.List;
  * 白名单不做鉴权直接放行
  * 静态资源可以做 nginx 的动静分离，白名单将 nginx 的静态资源路径配置在此即可
  *
- * @author MrDJun 2020/10/27
+ * @author EassenHou
  */
 public class WhiteUrlProperties {
     private static final String[] ENDPOINTS = {

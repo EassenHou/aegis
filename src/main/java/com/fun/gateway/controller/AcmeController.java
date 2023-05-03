@@ -5,17 +5,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 测试路由和网关流控 Controller
- *
- * @author EassenHou
  */
 @RestController
-@RequestMapping("/product")
-public class ProductController {
+@RequestMapping("/Acme")
+public class AcmeController {
 
     @RequestMapping("/list")
     public String list() {
         return "hello,world";
     }
+
 
     @RequestMapping("/list/sentinel")
     public String listsentinel() throws InterruptedException {
@@ -23,7 +22,6 @@ public class ProductController {
         return "hello,sentinel";
 
     }
-
     @RequestMapping("/black")
     public String black() {
         return "hello,black";
